@@ -4,11 +4,19 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
+const mongoose = require("mongoose");
 
 // app
 const app = express();
 
 //db
+mongoose
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
+  .then(() => console.log("DATABASE CONNECTED"));
 
 // middlewares
 app.use(morgan("dev"));
